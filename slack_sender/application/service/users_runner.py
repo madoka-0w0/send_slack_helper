@@ -20,4 +20,4 @@ class UsersRunner:
                 self.user_runner.run(user)
 
             except Exception as e:
-                self.logger.error("user id: {}, exception: {}".format(user.id, e))
+                self.logger.error("user id: {}, exception: {}".format(user.id, e), exc_info=True)
