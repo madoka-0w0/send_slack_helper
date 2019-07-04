@@ -27,7 +27,7 @@ class UserRunner:
 
     @abstractmethod
     def need_send_slack(self, user: User, message: SlackMessage):
-        return user.need_send_slack and not message.is_empty()
+        return user.need_send_slack and isinstance(message, SlackMessage) and not message.is_empty()
 
     @abstractmethod
     def change_need_send_slack_status(self, user: User, message: SlackMessage):
