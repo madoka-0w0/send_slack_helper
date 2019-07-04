@@ -2,7 +2,7 @@ import setuptools
 
 setuptools.setup(
     name="send_slack_helper",
-    version="1.0",
+    version="1.0.1",
     author="madoka takagi",
     author_email="mad106.t@gmail.com",
     description="send some message for slack url (incoming webhook).",

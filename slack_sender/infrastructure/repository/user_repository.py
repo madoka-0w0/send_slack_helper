@@ -1,9 +1,13 @@
+from injector import inject
+
+from slack_sender.infrastructure.configuration import Configuration
 from slack_sender.infrastructure.model.user import User
 
 
 class UserRepository:
-    def __init__(self, table):
-        self._table = table
+    @inject
+    def __init__(self, config: Configuration):
+        self._table = config.dynamodb.Table(config.user_table_name)
 
     def get_users(self):
         response = self._table.scan()

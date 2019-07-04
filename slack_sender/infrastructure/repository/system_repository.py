@@ -1,13 +1,17 @@
 from datetime import datetime
 
+from injector import inject
+
+from slack_sender.infrastructure.configuration import Configuration
 from slack_sender.infrastructure.model.system import System
 
 
 class SystemRepository:
-    def __init__(self, table, system_id, datetime_format):
-        self._table = table
-        self.system_id = system_id
-        self.datetime_format = datetime_format
+    @inject
+    def __init__(self, config: Configuration):
+        self._table = config.dynamodb.Table(config.system_table_name)
+        self.system_id = config.system_id
+        self.datetime_format = config.date_format
 
     def get(self):
         response = self._table.get_item(Key={
